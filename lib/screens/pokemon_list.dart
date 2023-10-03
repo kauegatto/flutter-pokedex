@@ -52,8 +52,8 @@ class PokedexScreen extends StatelessWidget {
   void _showLikeSnackBar(BuildContext context, PokemonModel pokemon) {
     final snackBar = SnackBar(
       content: Text(pokemon.liked
-          ? 'Curtiu ${pokemon.name} :)'
-          : 'Descurtiu ${pokemon.name} :('),
+          ? 'Curtiu ${pokemon.name} ❤️'
+          : 'Descurtiu ${pokemon.name} 😭'),
       action: SnackBarAction(
         label: 'Desfazer',
         onPressed: () {
@@ -61,6 +61,7 @@ class PokedexScreen extends StatelessWidget {
         },
       ),
     );
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
