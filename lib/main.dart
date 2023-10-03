@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   letterSpacing: 2.0))),
       body: IndexedStack(
           index: _currentPage,
-          children: [LoginForm(), const PokedexHome(), const PokedexScreen()]),
+          children: [LoginForm(), const PokedexHome(), PokedexScreen()]),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
