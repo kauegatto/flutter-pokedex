@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../model/pokemon_model.dart';
 
-class PokedexScreen extends StatelessWidget {
-  PokedexScreen({super.key});
+class PokedexScreen extends StatefulWidget {
+  const PokedexScreen({Key? key}) : super(key: key);
 
+  @override
+  State<PokedexScreen> createState() => _PokedexScreenState();
+}
+
+class _PokedexScreenState extends State<PokedexScreen> {
   final List<PokemonModel> pokemonList = PokemonModel.getPokemon();
 
   @override
@@ -45,7 +50,9 @@ class PokedexScreen extends StatelessWidget {
   }
 
   void _toggleLike(PokemonModel pokemon, BuildContext context) {
-    pokemon.liked = !pokemon.liked;
+    setState(() {
+      pokemon.liked = !pokemon.liked;
+    });
     _showLikeSnackBar(context, pokemon);
   }
 
