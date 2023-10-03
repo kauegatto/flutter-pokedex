@@ -4,14 +4,15 @@ class PokemonModel {
   final String image;
   final String type;
   final String? curiosities;
+  bool liked;
 
-  PokemonModel({
-    required this.number,
-    required this.name,
-    required this.image,
-    required this.type,
-    this.curiosities,
-  });
+  PokemonModel(
+      {required this.number,
+      required this.name,
+      required this.image,
+      required this.type,
+      this.curiosities,
+      this.liked = false});
 
   static List<PokemonModel> getPokemon() {
     return List<PokemonModel>.of([
