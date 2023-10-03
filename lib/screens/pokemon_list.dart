@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../logic/like/like_bloc.dart';
+import '../logic/like/like_event.dart';
+import '../logic/like/like_state.dart';
 import '../model/pokemon_model.dart';
 
 class PokedexScreen extends StatelessWidget {
