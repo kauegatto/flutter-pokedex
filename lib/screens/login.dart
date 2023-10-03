@@ -49,10 +49,9 @@ class LoginForm extends StatelessWidget {
       decoration: const InputDecoration(
         hintText: "Email@Dominio.com",
         labelText: "E-mail",
-        // Customize the border and focused border
         border: OutlineInputBorder(),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red), // Change the border color
+          borderSide: BorderSide(color: Colors.red),
         ),
       ),
     );
@@ -74,10 +73,9 @@ class LoginForm extends StatelessWidget {
       },
       decoration: const InputDecoration(
         labelText: "Senha",
-        // Customize the border and focused border
         border: OutlineInputBorder(),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red), // Change the border color
+          borderSide: BorderSide(color: Colors.red),
         ),
       ),
     );
@@ -93,7 +91,7 @@ class LoginForm extends StatelessWidget {
       onPressed: () {
         if (formKey.currentState!.validate()) {
           formKey.currentState!.save();
-          loginData.doSomething();
+          // loginBloc.add
         }
       },
     );
