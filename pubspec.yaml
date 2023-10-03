@@ -33,6 +33,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Pokemon 
+      fonts:
+        - asset: assets/fonts/Pokemon_Solid.ttf
   assets:
     - assets/images/
  

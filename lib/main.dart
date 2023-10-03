@@ -15,11 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pokedex',
       theme: ThemeData(
-        colorScheme:
-            const ColorScheme.dark(primary: Color.fromRGBO(228, 0, 15, 1)),
+        colorScheme: const ColorScheme.dark(primary: Color(0xFFE4000F)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'UNICAMP Pokedex'),
+      home: const MyHomePage(title: 'UNICAMP Pokédex'),
     );
   }
 }
@@ -39,9 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text(widget.title),
-      ),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          title: Text(widget.title,
+              style: const TextStyle(
+                  fontFamily: 'Pokemon',
+                  color: Colors.white,
+                  letterSpacing: 2.0))),
       body: IndexedStack(
           index: _currentPage,
           children: [LoginForm(), const PokedexHome(), const PokedexScreen()]),

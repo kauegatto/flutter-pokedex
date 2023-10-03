@@ -63,8 +63,8 @@ class LoginForm extends StatelessWidget {
       obscureText: true,
       validator: (String? inValue) {
         if (inValue != null) {
-          if (inValue.length < 10) {
-            return "Mínimo de 10 letras";
+          if (inValue.length < 6) {
+            return "Mínimo de 6 letras";
           }
         }
         return null;

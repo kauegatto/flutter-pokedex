@@ -15,9 +15,6 @@ class _PokedexScreenState extends State<PokedexScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pokedex'),
-      ),
       body: ListView.builder(
         itemCount: pokemonList.length,
         itemBuilder: (context, index) {
@@ -43,6 +40,9 @@ class _PokedexScreenState extends State<PokedexScreen> {
             onTap: () {
               _showPokemonDetails(context, pokemon);
             },
+            tileColor: index % 2 == 0
+                ? const Color.fromARGB(183, 44, 40, 40)
+                : Color.fromARGB(255, 133, 20, 27),
           );
         },
       ),
@@ -101,7 +101,8 @@ class _PokedexScreenState extends State<PokedexScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Fechar'),
+              child: const Text('Fechar',
+                  style: TextStyle(color: Colors.redAccent)),
             ),
           ],
         );
