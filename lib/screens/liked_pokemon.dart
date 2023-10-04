@@ -28,6 +28,18 @@ class LikedPokemonScreen extends StatelessWidget {
               final List<PokemonModel> likedPokemon =
                   PokemonModel.getPokemonByNumbers(likeState.pokemonLikes);
               // Build your screen based on the fetched liked Pokémon data
+              if (likedPokemon.isEmpty) {
+                return const Center(
+                  child: Text(
+                    "Você ainda não curtiu nenhum Pokémon!",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        letterSpacing: 2,
+                        fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
               return ListView.builder(
                 itemCount: likedPokemon.length,
                 itemBuilder: (context, index) {
