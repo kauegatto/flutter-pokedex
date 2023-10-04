@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokedex/logic/login/login_bloc.dart';
+import 'package:pokedex/logic/login/login_event.dart';
 import 'package:pokedex/widgets/elevated_button_padrao.dart';
 import 'package:pokedex/widgets/flutterdex_logo.dart';
 
@@ -25,7 +28,7 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: 20),
             passwordFormField(),
             const Divider(),
-            submitButton(),
+            submitButton(context),
           ],
         ),
       )
@@ -81,7 +84,7 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  Widget submitButton() {
+  Widget submitButton(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButtonPadrao.getEstiloComTamanho(200, 45),
       child: const Text(
@@ -91,6 +94,8 @@ class LoginForm extends StatelessWidget {
       onPressed: () {
         if (formKey.currentState!.validate()) {
           formKey.currentState!.save();
+          BlocProvider.of<LoginBloc>(context)
+              .add(LoginUserEvent(loginData.username, loginData.password));
           // loginBloc.add
         }
       },

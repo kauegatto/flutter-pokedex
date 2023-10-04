@@ -1,25 +1,29 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../model/user.dart';
 import 'like_event.dart';
 import 'like_state.dart';
 
 class LikeBloc extends Bloc<LikeEvent, LikeState> {
-  LikeBloc() : super(LikeState()) {
-    on<LikeEvent>((event, emit) {
-      final updatedLikes = Map<int, LikeStatus>.from(state.pokemonLikes);
+  final String? userEmail;
+  User temporaryMockUser =
+      User(email: "mock", password: "mock", likedPokemons: {});
 
-      // Toggle liked/unliked status for the specified Pokemon index
-      final pokemonIndex = event.number;
-      if (updatedLikes.containsKey(pokemonIndex)) {
-        updatedLikes[pokemonIndex] =
-            updatedLikes[pokemonIndex] == LikeStatus.liked
-                ? LikeStatus.unliked
-                : LikeStatus.liked;
-      } else {
-        updatedLikes[pokemonIndex] = LikeStatus.liked;
+  LikeBloc({required this.userEmail}) : super(LikeState()) {
+    on<LikeEvent>((event, emit) {
+      if (userEmail == null) {
+        return;
       }
 
-      emit(LikeState(pokemonLikes: updatedLikes));
+      final pokemonNumber = event.number;
+
+      if (!temporaryMockUser.isLiked(event.number)) {
+        temporaryMockUser.addLike(pokemonNumber);
+      } else {
+        temporaryMockUser.removeLike(pokemonNumber);
+      }
+      print("Liked now: ${temporaryMockUser.likedPokemons()}");
+      emit(LikeState(pokemonLikes: temporaryMockUser.likedPokemons()));
     });
   }
 }
