@@ -43,4 +43,10 @@ class PokemonModel {
       ),
     ]);
   }
+
+  static List<PokemonModel> getPokemonByNumbers(Set<int> id) {
+    return getPokemon()
+        .where((pokemon) => id.contains(pokemon.number))
+        .toList();
+  }
 }
