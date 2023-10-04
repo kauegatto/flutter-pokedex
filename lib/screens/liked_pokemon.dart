@@ -32,11 +32,12 @@ class LikedPokemonScreen extends StatelessWidget {
                 return const Center(
                   child: Text(
                     "Você ainda não curtiu nenhum Pokémon!",
+                    maxLines: 1,
                     style: TextStyle(
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        letterSpacing: 2,
-                        fontWeight: FontWeight.bold),
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 );
               }
