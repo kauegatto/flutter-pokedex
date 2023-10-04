@@ -19,7 +19,7 @@ class PokemonListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset(
+      leading: Image.network(
         pokemon.image,
         width: 50,
         height: 50,
@@ -56,7 +56,7 @@ class PokemonListItem extends StatelessWidget {
               mainAxisSize: MainAxisSize
                   .min, // Usar mainAxisSize.min pra nao ocupar espaço desnecessario, o mesmo que em home
               children: [
-                Image.asset(
+                Image.network(
                   pokemon.image,
                   width: 150,
                   height: 150,

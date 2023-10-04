@@ -25,33 +25,44 @@ class LikedPokemonScreen extends StatelessWidget {
         return Scaffold(
           body: BlocBuilder<LikeBloc, LikeState>(
             builder: (context, likeState) {
-              final List<PokemonModel> likedPokemon =
-                  PokemonModel.getPokemonByNumbers(likeState.pokemonLikes);
-              // Build your screen based on the fetched liked Pokémon data
-              if (likedPokemon.isEmpty) {
-                return const Center(
-                  child: Text(
-                    "Você ainda não curtiu nenhum Pokémon!",
-                    maxLines: 1,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      letterSpacing: 2,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                );
-              }
-              return ListView.builder(
-                itemCount: likedPokemon.length,
-                itemBuilder: (context, index) {
-                  final pokemon = likedPokemon[index];
-                  return PokemonListItem(
-                    pokemon: pokemon,
-                    likeState: likeState,
-                    tileColor: index % 2 == 0
-                        ? const Color.fromARGB(183, 44, 40, 40)
-                        : const Color.fromARGB(255, 133, 20, 27),
-                  );
+              return FutureBuilder<List<PokemonModel>>(
+                future:
+                    PokemonModel.getPokemonByNumbers(likeState.pokemonLikes),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    final likedPokemon = snapshot.data;
+                    // Build your screen based on the fetched liked Pokémon data
+                    if (likedPokemon!.isEmpty) {
+                      return const Center(
+                        child: Text(
+                          "Você ainda não curtiu nenhum Pokémon!",
+                          maxLines: 1,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            letterSpacing: 2,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    }
+                    return ListView.builder(
+                      itemCount: likedPokemon.length,
+                      itemBuilder: (context, index) {
+                        final pokemon = likedPokemon[index];
+                        return PokemonListItem(
+                          pokemon: pokemon,
+                          likeState: likeState,
+                          tileColor: index % 2 == 0
+                              ? const Color.fromARGB(183, 44, 40, 40)
+                              : const Color.fromARGB(255, 133, 20, 27),
+                        );
+                      },
+                    );
+                  }
                 },
               );
             },

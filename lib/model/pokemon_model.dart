@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+
 class PokemonModel {
   final int number;
   final String name;
@@ -14,39 +19,52 @@ class PokemonModel {
       this.curiosities,
       this.liked = false});
 
-  static List<PokemonModel> getPokemon() {
-    return List<PokemonModel>.of([
-      PokemonModel(
-        number: 025,
-        name: 'Pikachu',
-        image: 'assets/images/pikachu.png',
-        type: 'Electric',
-        curiosities: 'O pikachu do ash ama ketchup',
-      ),
-      PokemonModel(
-        number: 1,
-        name: 'Bulbasaur',
-        image: 'assets/images/bulbasaur.png',
-        type: 'Grass/Poison',
-      ),
-      PokemonModel(
-          number: 906,
-          name: 'Sprigatito',
-          image: 'assets/images/sprigatito.png',
-          type: 'Grass',
-          curiosities: "Pokémon preferido do aluno Big (George)"),
-      PokemonModel(
-        number: 6,
-        name: 'Charizard',
-        image: 'assets/images/charizard.png',
-        type: 'Fire/Flying',
-      ),
-    ]);
+  static Future<List<PokemonModel>> getPokemonList() async {
+    final List<PokemonModel> pokemonList = [];
+
+    for (int i = 1; i <= 151; i++) {
+      // 1st gen is the best
+      final Response response =
+          await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$i'));
+
+      if (response.statusCode == 200) {
+        pokemonList.add(PokemonModel.fromJson(jsonDecode(response.body)));
+      } else {
+        throw Exception('Failed to load Pokémon data for ID: $i');
+      }
+    }
+
+    return pokemonList;
   }
 
-  static List<PokemonModel> getPokemonByNumbers(Set<int> id) {
-    return getPokemon()
-        .where((pokemon) => id.contains(pokemon.number))
-        .toList();
+  static Future<List<PokemonModel>> getPokemonByNumbers(Set<int> ids) async {
+    final List<PokemonModel> pokemonList = [];
+
+    for (var pokemonId in ids) {
+      final Response response = await http
+          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$pokemonId'));
+
+      if (response.statusCode == 200) {
+        pokemonList.add(PokemonModel.fromJson(jsonDecode(response.body)));
+      } else {
+        throw Exception('Failed to load Pokémon data for ID: $pokemonId');
+      }
+    }
+    return pokemonList;
+  }
+
+  factory PokemonModel.fromJson(Map<String, dynamic> json) {
+    final String imageUrl =
+        json['sprites']['other']['official-artwork']['front_default'];
+
+    final List<dynamic> types = json['types'];
+    final List<String> typeList = [];
+
+    for (var typeEntry in types) {
+      typeList.add(typeEntry['type']['name']);
+    }
+
+    return PokemonModel(
+        number: json['id'], name: json['name'], type: "text", image: imageUrl);
   }
 }
