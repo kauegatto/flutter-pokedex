@@ -17,25 +17,27 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(children: [
-      const SizedBox(height: 30),
-      const FlutterdexLogo(),
-      Form(
-        key: formKey,
-        child: Column(
-          children: [
-            const SizedBox(height: 50),
-            usernameFormField(),
-            const SizedBox(height: 20),
-            passwordFormField(),
-            const Divider(),
-            submitButton(context),
-            const SizedBox(height: 5),
-            signUpButton(context),
-          ],
-        ),
-      )
-    ]));
+        child: SingleChildScrollView(
+      child: Column(children: [
+        const SizedBox(height: 30),
+        const FlutterdexLogo(),
+        Form(
+          key: formKey,
+          child: Column(
+            children: [
+              const SizedBox(height: 50),
+              usernameFormField(),
+              const SizedBox(height: 20),
+              passwordFormField(),
+              const Divider(),
+              submitButton(context),
+              const SizedBox(height: 5),
+              signUpButton(context),
+            ],
+          ),
+        )
+      ]),
+    ));
   }
 
   Widget usernameFormField() {
