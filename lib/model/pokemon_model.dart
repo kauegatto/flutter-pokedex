@@ -34,7 +34,7 @@ class PokemonModel {
           name: 'Sprigatito',
           image: 'assets/images/sprigatito.png',
           type: 'Grass',
-          curiosities: "Pokémon preferido do aluno Gustavo Beck 🍁"),
+          curiosities: "Pokémon preferido do aluno Big (George)"),
       PokemonModel(
         number: 6,
         name: 'Charizard',
