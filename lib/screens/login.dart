@@ -7,6 +7,7 @@ import 'package:pokedex/widgets/elevated_button_padrao.dart';
 import 'package:pokedex/widgets/flutterdex_logo.dart';
 
 import '../model/login_data.dart';
+import '../widgets/form_field_padrao.dart';
 
 class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -41,7 +42,7 @@ class LoginForm extends StatelessWidget {
   }
 
   Widget usernameFormField() {
-    return TextFormField(
+    return FormFieldPadrao(
       keyboardType: TextInputType.emailAddress,
       validator: (String? inValue) {
         if (inValue != null) {
@@ -54,19 +55,13 @@ class LoginForm extends StatelessWidget {
       onSaved: (String? inValue) {
         loginData.username = inValue ?? "";
       },
-      decoration: const InputDecoration(
-        hintText: "Email@Dominio.com",
-        labelText: "E-mail",
-        border: OutlineInputBorder(),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
-        ),
-      ),
+      hintText: "Email@Dominio.com",
+      labelText: "E-mail",
     );
   }
 
   Widget passwordFormField() {
-    return TextFormField(
+    return FormFieldPadrao(
       obscureText: true,
       validator: (String? inValue) {
         if (inValue != null) {
@@ -79,13 +74,7 @@ class LoginForm extends StatelessWidget {
       onSaved: (String? inValue) {
         loginData.password = inValue ?? "";
       },
-      decoration: const InputDecoration(
-        labelText: "Senha",
-        border: OutlineInputBorder(),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
-        ),
-      ),
+      labelText: "Senha",
     );
   }
 
