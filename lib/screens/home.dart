@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: Colors.redAccent,
               items: const [
                 BottomNavigationBarItem(
                     icon: Icon(Icons.home), label: "Início"),
