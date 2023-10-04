@@ -1,6 +1,9 @@
 class User {
   final String email;
   final String password;
+  String gender = "Masculino";
+  DateTime? birthDate;
+
   final Set<int> _likedPokemons;
 
   User({

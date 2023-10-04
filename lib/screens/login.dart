@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex/logic/login/login_bloc.dart';
 import 'package:pokedex/logic/login/login_event.dart';
+import 'package:pokedex/screens/sign_up.dart';
 import 'package:pokedex/widgets/elevated_button_padrao.dart';
 import 'package:pokedex/widgets/flutterdex_logo.dart';
 
@@ -29,6 +30,8 @@ class LoginForm extends StatelessWidget {
             passwordFormField(),
             const Divider(),
             submitButton(context),
+            const SizedBox(height: 5),
+            signUpButton(context),
           ],
         ),
       )
@@ -81,6 +84,23 @@ class LoginForm extends StatelessWidget {
           borderSide: BorderSide(color: Colors.red),
         ),
       ),
+    );
+  }
+
+  Widget signUpButton(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButtonPadrao.getEstiloComTamanho(150, 38),
+      onPressed: () {
+        // Navegue para a página de registro quando o botão de registro for pressionado
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                const SignUpScreen(), // Chama a página de registro
+          ),
+        );
+      },
+      child: const Text("Registrar", style: TextStyle(fontSize: 14)),
     );
   }
 
