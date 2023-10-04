@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:pokedex/logic/login/login_event.dart';
-import 'package:pokedex/logic/login/login_state.dart';
+import 'package:flutter_dex/logic/login/login_event.dart';
+import 'package:flutter_dex/logic/login/login_state.dart';
 
 class LoginBloc extends Bloc<LogInEvent, LoginState> {
   LoginBloc() : super(LoggedOut()) {

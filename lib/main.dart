@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokedex/logic/login/login_bloc.dart';
-import 'package:pokedex/screens/wrapper.dart';
+import 'package:flutter_dex/logic/login/login_bloc.dart';
+import 'package:flutter_dex/screens/wrapper.dart';
 
 void main() {
   runApp(const MyApp());

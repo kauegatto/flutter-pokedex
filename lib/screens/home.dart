@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokedex/screens/liked_pokemon.dart';
-import 'package:pokedex/screens/pokemon_list.dart';
+import 'package:flutter_dex/screens/liked_pokemon.dart';
+import 'package:flutter_dex/screens/pokemon_list.dart';
 import '../logic/like/like_bloc.dart';
 import '../logic/login/login_bloc.dart';
 import '../logic/login/login_state.dart';

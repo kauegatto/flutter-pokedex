@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/dto/sign_up_data.dart';
-import 'package:pokedex/widgets/elevated_button_padrao.dart';
+import 'package:flutter_dex/dto/sign_up_data.dart';
+import 'package:flutter_dex/widgets/elevated_button_padrao.dart';
 
 import '../widgets/form_field_padrao.dart';
 

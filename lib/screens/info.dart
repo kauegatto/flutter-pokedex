@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/widgets/elevated_button_padrao.dart';
-import 'package:pokedex/widgets/flutterdex_logo.dart';
+import 'package:flutter_dex/widgets/elevated_button_padrao.dart';
+import 'package:flutter_dex/widgets/flutterdex_logo.dart';
 
 class PokedexInfo extends StatelessWidget {
   const PokedexInfo({super.key});

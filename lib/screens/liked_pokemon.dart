@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokedex/model/pokemon_model.dart';
+import 'package:flutter_dex/model/pokemon_model.dart';
 
 import '../logic/like/like_bloc.dart';
 import '../logic/like/like_event.dart';

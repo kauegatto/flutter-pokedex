@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokedex/logic/login/login_bloc.dart';
-import 'package:pokedex/logic/login/login_event.dart';
-import 'package:pokedex/screens/sign_up.dart';
-import 'package:pokedex/widgets/elevated_button_padrao.dart';
-import 'package:pokedex/widgets/flutterdex_logo.dart';
+import 'package:flutter_dex/logic/login/login_bloc.dart';
+import 'package:flutter_dex/logic/login/login_event.dart';
+import 'package:flutter_dex/screens/sign_up.dart';
+import 'package:flutter_dex/widgets/elevated_button_padrao.dart';
+import 'package:flutter_dex/widgets/flutterdex_logo.dart';
 
 import '../model/login_data.dart';
 import '../widgets/form_field_padrao.dart';
