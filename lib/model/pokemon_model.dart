@@ -58,13 +58,21 @@ class PokemonModel {
         json['sprites']['other']['official-artwork']['front_default'];
 
     final List<dynamic> types = json['types'];
-    final List<String> typeList = [];
+    String typeList = "";
 
     for (var typeEntry in types) {
-      typeList.add(typeEntry['type']['name']);
+      if (typeList.isEmpty) {
+        // ignore: prefer_interpolation_to_compose_strings
+        typeList = typeEntry['type']['name'];
+      } else {
+        typeList = "$typeList/" + typeEntry['type']['name'];
+      }
     }
 
     return PokemonModel(
-        number: json['id'], name: json['name'], type: "text", image: imageUrl);
+        number: json['id'],
+        name: json['name'],
+        type: typeList,
+        image: imageUrl);
   }
 }

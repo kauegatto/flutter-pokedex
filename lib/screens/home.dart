@@ -44,10 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: IndexedStack(
               index: _currentPage,
-              children: [
-                const PokedexInfo(),
+              children: const [
+                PokedexInfo(),
                 PokedexScreen(),
-                const LikedPokemonScreen(),
+                LikedPokemonScreen(),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
