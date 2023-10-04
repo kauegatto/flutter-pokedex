@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 const PokedexInfo(),
                 PokedexScreen(),
-                LikedPokemonScreen(),
+                const LikedPokemonScreen(),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(

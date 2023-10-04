@@ -66,7 +66,7 @@ class LoginForm extends StatelessWidget {
       validator: (String? inValue) {
         if (inValue != null) {
           if (inValue.length < 6) {
-            return "Mínimo de 6 letras";
+            return "Mínimo de 6 dígitos";
           }
         }
         return null;

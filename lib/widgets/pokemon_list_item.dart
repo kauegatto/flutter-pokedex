@@ -85,13 +85,16 @@ class PokemonListItem extends StatelessWidget {
 
 void _toggleLike(PokemonModel pokemon, BuildContext context) {
   final likeBloc = BlocProvider.of<LikeBloc>(context);
+  final bool isLiked = likeBloc.state.isLiked(pokemon.number);
   likeBloc.add(LikeEvent(pokemon.number));
-  _showLikeSnackBar(context, pokemon);
+  _showLikeSnackBar(context, pokemon, isLiked);
 }
 
-void _showLikeSnackBar(BuildContext context, PokemonModel pokemon) {
+void _showLikeSnackBar(
+    BuildContext context, PokemonModel pokemon, bool isLiked) {
   final snackBar = SnackBar(
-    content: Text(pokemon.liked
+    duration: const Duration(seconds: 1),
+    content: Text(!isLiked
         ? 'Curtiu ${pokemon.name} ❤️'
         : 'Descurtiu ${pokemon.name} 😭'),
     action: SnackBarAction(
