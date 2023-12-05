@@ -1,20 +1,8 @@
-<<<<<<< HEAD
-abstract class LogInEvent {}
-
-class LoginUserEvent extends LogInEvent {
-  String email;
-  String password;
-  LoginUserEvent(this.email, this.password);
-}
-
-class LogoutUserEvent extends LogInEvent {}
-=======
 import 'package:flutter_dex/model/user_model.dart';
 
 abstract class LogInEvent {}
 
 class RegisterUser extends LogInEvent {
-
   String email;
   String password;
 
@@ -36,5 +24,3 @@ class LogInServerEvent extends LogInEvent {
   final UserModel? userModel;
   LogInServerEvent(this.userModel);
 }
-
->>>>>>> 19fa8a2 (Firebase)

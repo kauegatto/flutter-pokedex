@@ -86,12 +86,7 @@ class LoginForm extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-<<<<<<< HEAD
-            builder: (context) =>
-                const SignUpScreen(), // Chama a página de registro
-=======
             builder: (context) => SignUpForm(), // Chama a página de registro
->>>>>>> 19fa8a2 (Firebase)
           ),
         );
       },
@@ -109,13 +104,8 @@ class LoginForm extends StatelessWidget {
       onPressed: () {
         if (formKey.currentState!.validate()) {
           formKey.currentState!.save();
-<<<<<<< HEAD
-          BlocProvider.of<LoginBloc>(context)
-              .add(LoginUserEvent(loginData.username, loginData.password));
-=======
           BlocProvider.of<LoginBloc>(context).add(LoginUser(
               username: loginData.username, password: loginData.password));
->>>>>>> 19fa8a2 (Firebase)
           // loginBloc.add
         }
       },

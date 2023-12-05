@@ -13,11 +13,7 @@ class Wrapper extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
-<<<<<<< HEAD
-          if (state is LoggedIn) {
-=======
           if (state is Authenticated) {
->>>>>>> 19fa8a2 (Firebase)
             return const MyHomePage(title: "UNICAMP Pokédex");
           } else {
             return LoginForm();

@@ -1,27 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_dex/logic/login/login_event.dart';
 import 'package:flutter_dex/logic/login/login_state.dart';
-<<<<<<< HEAD
-
-class LoginBloc extends Bloc<LogInEvent, LoginState> {
-  LoginBloc() : super(LoggedOut()) {
-    on<LoginUserEvent>((event, emit) {
-      if (event.email == "teste" && event.password == "123456") {
-        print("logged");
-        emit(LoggedIn(event.email));
-      }
-      print("exited with ${event.email} ${event.password}");
-    });
-    on<LogoutUserEvent>((event, emit) {
-      LoggedOut();
-    });
-  }
-=======
 import 'package:flutter_dex/provider/firebase_auth.dart';
 
 class LoginBloc extends Bloc<LogInEvent, LoginState> {
-
-  final FirebaseAuthenticationService _authenticationService = FirebaseAuthenticationService();
+  final FirebaseAuthenticationService _authenticationService =
+      FirebaseAuthenticationService();
 
   LoginBloc() : super(Unauthenticated()) {
     _authenticationService.user.listen((event) {
@@ -38,7 +22,8 @@ class LoginBloc extends Bloc<LogInEvent, LoginState> {
 
     on<RegisterUser>((event, emit) async {
       try {
-        await _authenticationService.createUserWithEmailAndPassword(event.email, event.password);
+        await _authenticationService.createUserWithEmailAndPassword(
+            event.email, event.password);
       } catch (e) {
         emit(LoginError(msg: "Impossível registrar-se: ${e.toString()}"));
       }
@@ -46,9 +31,11 @@ class LoginBloc extends Bloc<LogInEvent, LoginState> {
 
     on<LoginUser>((event, emit) async {
       try {
-        await _authenticationService.signInWithEmailAndPassword(event.username, event.password);
+        await _authenticationService.signInWithEmailAndPassword(
+            event.username, event.password);
       } catch (e) {
-        emit(LoginError(msg: "Impossível logar-se com ${event.username}: ${e.toString()}"));
+        emit(LoginError(
+            msg: "Impossível logar-se com ${event.username}: ${e.toString()}"));
       }
     });
 
@@ -56,7 +43,8 @@ class LoginBloc extends Bloc<LogInEvent, LoginState> {
       try {
         await _authenticationService.signInAnonimo();
       } catch (e) {
-        emit(LoginError(msg: "Impossível acessar anonimamente: ${e.toString()}"));
+        emit(LoginError(
+            msg: "Impossível acessar anonimamente: ${e.toString()}"));
       }
     });
 
@@ -67,8 +55,5 @@ class LoginBloc extends Bloc<LogInEvent, LoginState> {
         emit(LoginError(msg: "Impossivel efetuar logout: ${e.toString()}"));
       }
     });
-
   }
-
->>>>>>> 19fa8a2 (Firebase)
 }
