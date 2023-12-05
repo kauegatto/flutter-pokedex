@@ -22,7 +22,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, loginState) {
+<<<<<<< HEAD
         final email = (loginState is LoggedIn) ? loginState.email : null;
+=======
+        final email = (loginState is Authenticated) ? loginState.userModel.uuid : null;
+>>>>>>> 19fa8a2 (Firebase)
 
         return MultiBlocProvider(
           providers: [

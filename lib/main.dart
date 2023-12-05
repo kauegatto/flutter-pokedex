@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dex/logic/login/login_bloc.dart';
 import 'package:flutter_dex/screens/wrapper.dart';
+import 'package:flutter_dex/firebase_options.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

@@ -16,7 +16,11 @@ class LikedPokemonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, loginState) {
+<<<<<<< HEAD
         final email = (loginState is LoggedIn) ? loginState.email : null;
+=======
+        final email = (loginState is Authenticated) ? loginState.userModel.uuid : null;
+>>>>>>> 19fa8a2 (Firebase)
         final likeBloc = BlocProvider.of<LikeBloc>(context);
 
         // Dispatch the FindLikedEvent to fetch liked Pokémon
