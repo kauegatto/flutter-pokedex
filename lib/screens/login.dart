@@ -82,11 +82,15 @@ class LoginForm extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButtonPadrao.getEstiloComTamanho(150, 38),
       onPressed: () {
-        // Navegue para a página de registro quando o botão de registro for pressionado
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SignUpForm(), // Chama a página de registro
+        Navigator.of(context).push(
+          MaterialPageRoute<SignUpForm>(
+            builder: (context) {
+              // Use BlocProvider.create instead of BlocProvider.value
+              return BlocProvider(
+                create: (context) => LoginBloc(),
+                child: SignUpForm(),
+              );
+            },
           ),
         );
       },

@@ -22,7 +22,7 @@ class PokemonModel {
   static Future<List<PokemonModel>> getPokemonList() async {
     final List<PokemonModel> pokemonList = [];
 
-    for (int i = 1; i <= 15; i++) {
+    for (int i = 1; i <= 20; i++) {
       // 1st gen is the best
       final Response response =
           await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$i'));

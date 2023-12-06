@@ -22,8 +22,8 @@ class LikeBloc extends Bloc<AbstractLikeEvent, LikeState> {
       } else {
         temporaryMockUser.removeLike(pokemonNumber);
       }
-      print("Liked now: ${temporaryMockUser.likedPokemons()}");
-      emit(LikeState(pokemonLikes: temporaryMockUser.likedPokemons()));
+      print("Liked now: ${temporaryMockUser.getLikedPokemons()}");
+      emit(LikeState(pokemonLikes: temporaryMockUser.getLikedPokemons()));
     });
     on<FindLikedEvent>((event, emit) {
       if (userEmail == null) {
@@ -32,7 +32,7 @@ class LikeBloc extends Bloc<AbstractLikeEvent, LikeState> {
 
       // userRepository.getUser (mocked for now)
 
-      emit(LikeState(pokemonLikes: temporaryMockUser.likedPokemons()));
+      emit(LikeState(pokemonLikes: temporaryMockUser.getLikedPokemons()));
     });
   }
 }

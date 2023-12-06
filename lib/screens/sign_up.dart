@@ -11,11 +11,13 @@ import '../widgets/form_field_padrao.dart';
 class SignUpForm extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final SignUpData signUpData = SignUpData(email: "", password: "");
+  late LoginBloc _loginBloc;
 
   SignUpForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    _loginBloc = BlocProvider.of<LoginBloc>(context);
     return Material(
       child: Center(
         child: SingleChildScrollView(
@@ -79,141 +81,17 @@ class SignUpForm extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButtonPadrao.getEstiloComTamanho(200, 45),
       child: const Text(
-        "Entrar",
+        "Registrar",
         style: TextStyle(fontSize: 18),
       ),
       onPressed: () {
         if (formKey.currentState!.validate()) {
           formKey.currentState!.save();
-          BlocProvider.of<LoginBloc>(context).add(RegisterUser(
+          _loginBloc.add(RegisterUser(
               email: signUpData.email, password: signUpData.password));
         }
+        Navigator.of(context).pop();
       },
     );
   }
 }
-
-
-// class SignUpScreen extends StatefulWidget {
-//   const SignUpScreen({super.key});
-
-//   @override
-//   State<SignUpScreen> createState() => _SignUpScreenState();
-// }
-
-// class _SignUpScreenState extends State<SignUpScreen> {
-//   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-//   final SignUpData signUpData = SignUpData(email: "", password: "");
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Cadastro"),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Form(
-//           key: formKey,
-//           child: ListView(
-//             children: [
-//               FormFieldPadrao(
-//                 keyboardType: TextInputType.emailAddress,
-//                 labelText: "E-mail",
-//                 validator: (value) {
-//                   if (value == null || value.isEmpty) {
-//                     return "Insira um e-mail válido";
-//                   }
-//                   return null;
-//                 },
-//                 onSaved: (value) {
-//                   signUpData.email = value ?? "";
-//                 },
-//               ),
-//               const SizedBox(height: 16.0),
-//               FormFieldPadrao(
-//                 obscureText: true,
-//                 labelText: "Senha",
-//                 validator: (value) {
-//                   if (value == null || value.length < 6) {
-//                     return "A senha deve conter no mínimo 6 caracteres";
-//                   }
-//                   return null;
-//                 },
-//                 onSaved: (value) {
-//                   signUpData.password = value ?? "";
-//                 },
-//               ),
-//               const SizedBox(height: 16.0),
-//               const Text("Gênero"),
-//               Row(
-//                 children: [
-//                   Radio(
-//                     value: "Masculino",
-//                     groupValue: signUpData.gender,
-//                     onChanged: (value) {
-//                       setState(() {
-//                         signUpData.gender = value.toString();
-//                       });
-//                     },
-//                   ),
-//                   const Text("Masculino"),
-//                   Radio(
-//                     value: "Feminino",
-//                     groupValue: signUpData.gender,
-//                     onChanged: (value) {
-//                       setState(() {
-//                         signUpData.gender = value.toString();
-//                       });
-//                     },
-//                   ),
-//                   const Text("Feminino"),
-//                 ],
-//               ),
-//               const SizedBox(height: 16.0),
-//               const Text("Data de Nascimento:"),
-//               const SizedBox(height: 10),
-//               ElevatedButton(
-//                 style: ElevatedButtonPadrao.getEstilo(),
-//                 onPressed: () async {
-//                   final selectedDate = await showDatePicker(
-//                     context: context,
-//                     initialDate: DateTime.now(),
-//                     firstDate: DateTime(1980),
-//                     lastDate: DateTime.now(),
-//                     helpText: "Selecione sua data de nascimento",
-//                   );
-//                   if (selectedDate != null) {
-//                     setState(() {
-//                       signUpData.birthDate = selectedDate;
-//                     });
-//                   }
-//                 },
-//                 child: Text(
-//                   signUpData.birthDate != null
-//                       ? signUpData.birthDate!.toLocal().toString().split(' ')[0]
-//                       : "Selecionar Data",
-//                 ),
-//               ),
-//               const SizedBox(height: 8),
-//               ElevatedButton(
-//                 style: ElevatedButtonPadrao.getEstilo(),
-//                 onPressed: () {
-//                   if (formKey.currentState!.validate()) {
-//                     formKey.currentState!.save();
-
-//                     BlocProvider.of<LoginBloc>(context)
-//                       .add(RegisterUser(email: signUpData.email, password: signUpData.password));
-//                     // Agora você pode enviar signUpData para o seu servidor ou
-//                     // executar outras ações necessárias com os dados do usuário.
-//                   }
-//                 },
-//                 child: const Text("Cadastrar"),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
