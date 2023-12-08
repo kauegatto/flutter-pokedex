@@ -1,9 +1,9 @@
-enum LikeStatus { liked, unliked }
+enum LikeStatus { loading, liked, unliked }
 
 class LikeState {
-  final Set<int> pokemonLikes;
+  final List<int> pokemonLikes;
 
-  LikeState({Set<int>? pokemonLikes}) : pokemonLikes = pokemonLikes ?? {};
+  LikeState({List<int>? pokemonLikes}) : pokemonLikes = pokemonLikes ?? [];
 
   bool isLiked(int pokemonIndex) {
     return pokemonLikes.contains(pokemonIndex);

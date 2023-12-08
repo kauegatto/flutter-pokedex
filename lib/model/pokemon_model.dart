@@ -37,7 +37,7 @@ class PokemonModel {
     return pokemonList;
   }
 
-  static Future<List<PokemonModel>> getPokemonByNumbers(Set<int> ids) async {
+  static Future<List<PokemonModel>> getPokemonByNumbers(List<int> ids) async {
     final List<PokemonModel> pokemonList = [];
 
     for (var pokemonId in ids) {

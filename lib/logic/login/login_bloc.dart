@@ -1,7 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_dex/logic/login/login_event.dart';
 import 'package:flutter_dex/logic/login/login_state.dart';
+import 'package:flutter_dex/model/user_model.dart';
 import 'package:flutter_dex/provider/firebase_auth.dart';
+import 'package:flutter_dex/provider/firebase_firestore.dart';
 
 class LoginBloc extends Bloc<LogInEvent, LoginState> {
   final FirebaseAuthenticationService _authenticationService =
@@ -24,6 +27,8 @@ class LoginBloc extends Bloc<LogInEvent, LoginState> {
       try {
         await _authenticationService.createUserWithEmailAndPassword(
             event.email, event.password);
+
+        await FirestoreDatabase.conn.addUser();
       } catch (e) {
         emit(LoginError(msg: "Impossível registrar-se: ${e.toString()}"));
       }

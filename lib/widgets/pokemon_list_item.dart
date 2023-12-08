@@ -86,7 +86,7 @@ class PokemonListItem extends StatelessWidget {
 void _toggleLike(PokemonModel pokemon, BuildContext context) {
   final likeBloc = BlocProvider.of<LikeBloc>(context);
   final bool isLiked = likeBloc.state.isLiked(pokemon.number);
-  likeBloc.add(LikeEvent(pokemon.number));
+  likeBloc.add(LikeEvent(pokemon.number, !isLiked));
   _showLikeSnackBar(context, pokemon, isLiked);
 }
 

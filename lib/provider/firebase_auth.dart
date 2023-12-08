@@ -32,7 +32,7 @@ class FirebaseAuthenticationService {
   Future<UserModel?> createUserWithEmailAndPassword(String email, String password) async {
     UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
     User? user = userCredential.user;
-
+    
     return _userFromFirebaseUser(user);
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dex/logic/like/like_event.dart';
 import 'package:flutter_dex/screens/liked_pokemon.dart';
 import 'package:flutter_dex/screens/pokemon_list.dart';
 import '../logic/like/like_bloc.dart';
@@ -22,28 +23,28 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, loginState) {
-        final email =
+        final uuid =
             (loginState is Authenticated) ? loginState.userModel.uuid : null;
 
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider<LikeBloc>(
-              create: (context) => LikeBloc(userEmail: email),
-            ),
-          ],
-          child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              title: Text(
-                widget.title,
-                style: const TextStyle(
-                  fontFamily: 'Pokemon',
-                  color: Colors.white,
-                  letterSpacing: 2.0,
-                ),
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            title: Text(
+              widget.title,
+              style: const TextStyle(
+                fontFamily: 'Pokemon',
+                color: Colors.white,
+                letterSpacing: 2.0,
               ),
             ),
-            body: IndexedStack(
+          ),
+          body: MultiBlocProvider(
+            providers: [
+              BlocProvider<LikeBloc>(
+                create: (context) => LikeBloc(uuid: uuid),
+              ),
+            ],
+            child: IndexedStack(
               index: _currentPage,
               children: const [
                 PokedexInfo(),
@@ -51,23 +52,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 LikedPokemonScreen(),
               ],
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              selectedItemColor: Colors.redAccent,
-              items: const [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.home), label: "Início"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.list), label: "Pokemons"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.favorite), label: "Curtidos"),
-              ],
-              currentIndex: _currentPage,
-              onTap: (int tappedIndex) {
-                setState(() {
-                  _currentPage = tappedIndex;
-                });
-              },
-            ),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: Colors.redAccent,
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home), label: "Início"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.list), label: "Pokemons"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite), label: "Curtidos"),
+            ],
+            currentIndex: _currentPage,
+            onTap: (int tappedIndex) {
+              setState(() {
+                _currentPage = tappedIndex;
+
+                // if (_currentPage == 2) {
+                //   BlocProvider.of<LikeBloc>(context).add(FindLikedEvent(uuid));
+                // }
+              });
+            },
           ),
         );
       },

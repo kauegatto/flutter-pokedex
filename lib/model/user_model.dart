@@ -1,28 +1,46 @@
 class UserModel {
-  final String uuid;
+  String? uuid;
+  String? email;
   String gender = "Masculino";
   DateTime? birthDate;
 
-  final Set<int> _likedPokemons; // vem do firebase - lista de integers
+  final List<int> _pokemons; // vem do firebase - lista de integers
+
+
+  factory UserModel.fromFirestore(Map<String, dynamic>? data) {
+    if (data == null) {
+      // Handle the case where data is null (optional)
+      throw FormatException("Invalid data: null");
+    }
+
+    return UserModel(
+      email: data['email'] as String?,
+      pokemons: List<int>.from(data['pokemons'] as List<int> ?? []),
+    );
+  }
+
 
   UserModel({
-    required this.uuid,
-    Set<int>? getLikedPokemons,
-  }) : _likedPokemons = getLikedPokemons ?? {};
+    this.uuid,
+    this.email,
+    List<int>? pokemons,
+  }) : _pokemons = pokemons ?? [];
 
   bool isLiked(int pokemonNumber) {
-    return _likedPokemons.contains(pokemonNumber);
+    return _pokemons.contains(pokemonNumber);
   }
 
   void addLike(int pokemonNumber) {
-    _likedPokemons.add(pokemonNumber); // atualiza do firebase
+    print("entrou na adição de model do pokémon");
+    _pokemons.add(pokemonNumber); // atualiza do firebase
   }
 
   void removeLike(int pokemonNumber) {
-    _likedPokemons.remove(pokemonNumber); // atualiza do frebase
+    print("entrou na remoção model do pokémon");
+    _pokemons.remove(pokemonNumber); // atualiza do frebase
   }
 
-  Set<int> getLikedPokemons() {
-    return Set.from(_likedPokemons);
+  List<int> getLikedPokemons() {
+    return List.from(_pokemons);
   }
 }
