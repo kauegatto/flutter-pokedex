@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_dex/logic/login/login_event.dart';
 import 'package:flutter_dex/logic/login/login_state.dart';
-import 'package:flutter_dex/model/user_model.dart';
 import 'package:flutter_dex/provider/firebase_auth.dart';
 import 'package:flutter_dex/provider/firebase_firestore.dart';
 

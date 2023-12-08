@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dex/logic/like/like_event.dart';
+import 'package:flutter_dex/logic/login/login_event.dart';
 import 'package:flutter_dex/screens/liked_pokemon.dart';
 import 'package:flutter_dex/screens/pokemon_list.dart';
 import '../logic/like/like_bloc.dart';
@@ -37,6 +37,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 letterSpacing: 2.0,
               ),
             ),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.logout),
+                onPressed: () {
+                  BlocProvider.of<LoginBloc>(context).add(Logout());
+                },
+              ),
+            ],
           ),
           body: MultiBlocProvider(
             providers: [
@@ -56,8 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
           bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: Colors.redAccent,
             items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home), label: "Início"),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Início"),
               BottomNavigationBarItem(
                   icon: Icon(Icons.list), label: "Pokemons"),
               BottomNavigationBarItem(

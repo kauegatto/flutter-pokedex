@@ -18,8 +18,15 @@ class SignUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _loginBloc = BlocProvider.of<LoginBloc>(context);
-    return Material(
-      child: Center(
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: const Text("Registro"),
+      ),
+      body: Center(
         child: SingleChildScrollView(
           child: Column(children: [
             const SizedBox(height: 30),
@@ -31,6 +38,7 @@ class SignUpForm extends StatelessWidget {
                 emailFormField(),
                 const SizedBox(height: 20),
                 passwordFormField(),
+                const SizedBox(height: 20),
                 submitButton(context),
               ]),
             )
